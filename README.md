@@ -173,7 +173,7 @@ DeviceFileEvents
 
 ## Summary
 
-- Analysis of endpoint activity on `michael-mde-vm` reveals that the user `michaellabuser` successfully downloaded, installed, and utilized the Tor Browser to bypass standard network security controls. Following the establishment of a connection to the Tor relay network, evidence suggests the user engaged in browsing activities and created a "shopping list" document on the desktop.
+Analysis of endpoint activity on `michael-mde-vm` reveals that the user `michaellabuser` successfully downloaded, installed, and utilized the Tor Browser to bypass standard network security controls. Following the establishment of a connection to the Tor relay network, evidence suggests the user engaged in browsing activities and created a "shopping list" document on the desktop.
 
 ## Evidence
 
