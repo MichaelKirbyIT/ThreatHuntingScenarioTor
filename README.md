@@ -178,6 +178,10 @@ DeviceFileEvents
 ## Evidence
 
 - [Tor Download](https://github.com/MichaelKirbyIT/ThreatHuntingScenarioTor/blob/main/Evidence-Tor-Download)
+- [Tor Install](https://github.com/MichaelKirbyIT/ThreatHuntingScenarioTor/blob/main/Evidence-Tor-Install)
+- [Tor Process Creation](https://github.com/MichaelKirbyIT/ThreatHuntingScenarioTor/blob/main/Evidence-Tor-Process-Creation)
+- [Tor Usage](https://github.com/MichaelKirbyIT/ThreatHuntingScenarioTor/blob/main/Evidence-Tor-Usage)
+- [Tor File Creation](https://github.com/MichaelKirbyIT/ThreatHuntingScenarioTor/blob/main/Evidence-Tor-File-Creation)
 
 
 ---
