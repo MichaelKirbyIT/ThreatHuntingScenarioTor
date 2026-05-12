@@ -97,6 +97,27 @@ DeviceNetworkEvents
 ```
 <img width="1738" height="294" alt="image" src="https://github.com/user-attachments/assets/29373080-f21a-47af-a244-93256f6e18c4" />
 
+---
+
+### 5. Searched the `DeviceFileEvents` Table any files related to TOR.
+
+Searched for any indication that the user "michaellabuser" created or modified any files related to TOR. At `2026-05-11T18:08:10.4067883Z`, the user created a file named `tor-shopping-list.txt`, located in the folder `C:\Users\michaellabuser\Desktop\tor-shopping-list.txt`.
+
+
+**Query used to locate events:**
+
+```kql
+DeviceFileEvents
+| where DeviceName == "michael-mde-vm"
+| where InitiatingProcessAccountName == "michaellabuser"
+| where Timestamp >= datetime(2026-05-11T17:32:51.340943Z)
+| where FileName contains "tor"
+| order by Timestamp desc
+| project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessAccountName, InitiatingProcessFileName
+```
+<img width="1415" height="415" alt="image" src="https://github.com/user-attachments/assets/185f023b-a418-4145-a629-315a4696b1b4" />
+
+
 
 ---
 
@@ -104,59 +125,84 @@ DeviceNetworkEvents
 
 ### 1. File Download - TOR Installer
 
-- **Timestamp:** `2024-11-08T22:14:48.6065231Z`
-- **Event:** The user "employee" downloaded a file named `tor-browser-windows-x86_64-portable-14.0.1.exe` to the Downloads folder.
+- **Timestamp:** `2026-05-11T17:32:51.340943Z`
+- **Event:** The user "employee" downloaded a file named `tor-browser-windows-x86_64-portable-15.0.13.exe` to the Downloads folder.
 - **Action:** File download detected.
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\Users\michaellabuser\Downloads\tor-browser-windows-x86_64-portable-15.0.13.exe`
 
 ### 2. Process Execution - TOR Browser Installation
 
-- **Timestamp:** `2024-11-08T22:16:47.4484567Z`
-- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-14.0.1.exe` in silent mode, initiating a background installation of the TOR Browser.
+- **Timestamp:** `2026-05-11T17:36:17.0097036Z`
+- **Event:** The user "employee" executed the file `tor-browser-windows-x86_64-portable-15.0.13.exe` in silent mode, initiating a background installation of the TOR Browser.
 - **Action:** Process creation detected.
-- **Command:** `tor-browser-windows-x86_64-portable-14.0.1.exe /S`
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **Command:** `tor-browser-windows-x86_64-portable-15.0.13.exe  /S`
+- **File Path:** `C:\Users\michaellabuser\Downloads\tor-browser-windows-x86_64-portable-15.0.13.exe`
 
 ### 3. Process Execution - TOR Browser Launch
 
-- **Timestamp:** `2024-11-08T22:17:21.6357935Z`
-- **Event:** User "employee" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
+- **Timestamp:** `2026-05-11T17:37:05.2927851Z`
+- **Event:** User "michaellabuser" on the virtual machine "michael-mde-vm" opened the TOR browser. Subsequent processes associated with TOR browser, such as `firefox.exe` and `tor.exe`, were also created, indicating that the browser launched successfully.
 - **Action:** Process creation of TOR browser-related executables detected.
-- **File Path:** `C:\Users\employee\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
+- **File Path:** `C:\Users\michaellabuser\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe`
 
 ### 4. Network Connection - TOR Network
 
-- **Timestamp:** `2024-11-08T22:18:01.1246358Z`
-- **Event:** A network connection to IP `176.198.159.33` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
+- **Timestamp:** `2026-05-11T17:37:43.8157986Z`
+- **Event:** A network connection to IP `217.160.98.239` on port `9001` by user "employee" was established using `tor.exe`, confirming TOR browser network activity.
 - **Action:** Connection success.
 - **Process:** `tor.exe`
-- **File Path:** `c:\users\employee\desktop\tor browser\browser\torbrowser\tor\tor.exe`
+- **File Path:** `c:\users\michaellabuser\desktop\tor browser\browser\torbrowser\tor\tor.exe`
 
 ### 5. Additional Network Connections - TOR Browser Activity
 
 - **Timestamps:**
-  - `2024-11-08T22:18:08Z` - Connected to `194.164.169.85` on port `443`.
-  - `2024-11-08T22:18:16Z` - Local connection to `127.0.0.1` on port `9150`.
-- **Event:** Additional TOR network connections were established, indicating ongoing activity by user "employee" through the TOR browser.
+  - `2026-05-11T17:37:34.9948365Z` - Local connection to `127.0.0.1` on port `9150`.
+- **Event:** Additional TOR network connections were established, indicating ongoing activity by user "michaellabuser" through the TOR browser.
 - **Action:** Multiple successful connections detected.
 
 ### 6. File Creation - TOR Shopping List
 
-- **Timestamp:** `2024-11-08T22:27:19.7259964Z`
-- **Event:** The user "employee" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
+- **Timestamp:** `2026-05-11T18:08:10.4067883Z`
+- **Event:** The user "michaellabuser" created a file named `tor-shopping-list.txt` on the desktop, potentially indicating a list or notes related to their TOR browser activities.
 - **Action:** File creation detected.
-- **File Path:** `C:\Users\employee\Desktop\tor-shopping-list.txt`
+- **File Path:** `C:\Users\michaellabuser\Desktop\tor-shopping-list.txt`
+
+
 
 ---
 
 ## Summary
 
-The user "employee" on the "threat-hunt-lab" device initiated and completed the installation of the TOR browser. They proceeded to launch the browser, establish connections within the TOR network, and created various files related to TOR on their desktop, including a file named `tor-shopping-list.txt`. This sequence of activities indicates that the user actively installed, configured, and used the TOR browser, likely for anonymous browsing purposes, with possible documentation in the form of the "shopping list" file.
+- Analysis of endpoint activity on `michael-mde-vm` reveals that the user `michaellabuser` successfully downloaded, installed, and utilized the Tor Browser to bypass standard network security controls. Following the establishment of a connection to the Tor relay network, evidence suggests the user engaged in browsing activities and created a "shopping list" document on the desktop.
 
 ---
 
 ## Response Taken
 
-TOR usage was confirmed on the endpoint `threat-hunt-lab` by the user `employee`. The device was isolated, and the user's direct manager was notified.
+### 1. Immediate Containment
+- Host Isolation: At 13:15 UTC, the host michael-mde-vm was isolated via Microsoft Defender for Endpoint (MDE). This severed all active network connections to the Tor relay network while maintaining a secure management channel for forensic triage.
+
+- Process Termination: Utilizing MDE’s remote shell capabilities, all running instances of tor.exe and firefox.exe (Tor Browser) were force-terminated to collapse the anonymized tunnel.
+
+- Identity Lockdown: Initiated a temporary account disablement for michaellabuser in Entra ID to mitigate the risk of lateral movement or unauthorized access to cloud resources.
+
+### 2. Eradication & Forensic Collection
+- Artifact Preservation: A comprehensive "Investigation Package" was pulled from the endpoint, including a memory dump and a copy of the tor-shopping-list.txt file to serve as evidence of intent.
+
+- Secure Deletion: The unauthorized \Desktop\Tor Browser\ directory and the installer located in the Downloads folder were purged using a secure wipe protocol to ensure no persistence remained.
+
+- Registry Sanitation: Scanned and removed specific user-level registry keys located in HKEY_CURRENT_USER\Software created during the silent installation.
+
+### 3. Recovery & Verification
+- Credential Rotation: Triggered a mandatory password reset for the user and revoked all active MFA session tokens to ensure the identity was fully re-secured.
+
+- Endpoint Scouring: Performed a full disk scan for other unauthorized portable executables or "Living off the Land" (LotL) tools; the scan returned clean.
+
+- System Re-Integration: Host isolation was successfully lifted at 15:00 UTC after verifying that all outbound communication to known Tor relay IPs had ceased.
+
+### 4. Stakeholder Communication
+- Executive Reporting: A finalized incident summary was delivered to the IT Security Manager detailing the timeline and the discovered "shopping list" artifact.
+
+- Managerial Follow-up: The user’s department head was notified to schedule a Security Awareness Interview to address the policy violation and assess the user's motive for seeking illicit services.
 
 ---
